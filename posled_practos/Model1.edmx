@@ -1,0 +1,734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище uvModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cena_ukrash">
+          <Key>
+            <PropertyRef Name="id_cena_ukrash" />
+          </Key>
+          <Property Name="id_cena_ukrash" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priceee" Type="int" />
+        </EntityType>
+        <EntityType Name="cheak">
+          <Key>
+            <PropertyRef Name="id_cheak" />
+          </Key>
+          <Property Name="id_cheak" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tovar_id" Type="int" />
+          <Property Name="cheakkk_id" Type="int" />
+          <Property Name="pol_id" Type="int" />
+        </EntityType>
+        <EntityType Name="drag_camni">
+          <Key>
+            <PropertyRef Name="id_camni" />
+          </Key>
+          <Property Name="id_camni" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_camni" Type="varchar" MaxLength="50" />
+          <Property Name="mesto_dobich_id" Type="int" />
+          <Property Name="ochis_kamen" Type="int" />
+          <Property Name="camen_id" Type="int" />
+        </EntityType>
+        <EntityType Name="info_cheak">
+          <Key>
+            <PropertyRef Name="id_cheka" />
+          </Key>
+          <Property Name="id_cheka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="addess" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="int" />
+          <Property Name="vrem" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="mesto_dobich">
+          <Key>
+            <PropertyRef Name="id_dobich" />
+          </Key>
+          <Property Name="id_dobich" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mesto_dobich" Type="varchar" MaxLength="50" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="post_dost_id" Type="int" />
+        </EntityType>
+        <EntityType Name="ochish_camen">
+          <Key>
+            <PropertyRef Name="id_ochish" />
+          </Key>
+          <Property Name="id_ochish" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ochish" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="polzovatel">
+          <Key>
+            <PropertyRef Name="id_pol" />
+          </Key>
+          <Property Name="id_pol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Loginn" Type="varchar" MaxLength="50" />
+          <Property Name="passwordd" Type="int" />
+          <Property Name="role_id" Type="int" />
+        </EntityType>
+        <EntityType Name="postavchik">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="int" Nullable="false" />
+          <Property Name="name_post" Type="varchar" MaxLength="50" />
+          <Property Name="surname_post" Type="varchar" MaxLength="50" />
+          <Property Name="otchestvo_post" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="rolee">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_of_reole" Type="varchar" MaxLength="50" />
+          <Property Name="uvel_id" Type="int" />
+          <Property Name="posttt_id" Type="int" />
+        </EntityType>
+        <EntityType Name="strana">
+          <Key>
+            <PropertyRef Name="id_country_name" />
+          </Key>
+          <Property Name="id_country_name" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strana" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="uveliri">
+          <Key>
+            <PropertyRef Name="id_uveliri" />
+          </Key>
+          <Property Name="id_uveliri" Type="int" Nullable="false" />
+          <Property Name="name_uveliri" Type="varchar" MaxLength="50" />
+          <Property Name="surname_uvelriri" Type="varchar" MaxLength="50" />
+          <Property Name="otchestvo_uvelri" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__cheak__cheakkk_i__534D60F1">
+          <End Role="info_cheak" Type="Self.info_cheak" Multiplicity="0..1" />
+          <End Role="cheak" Type="Self.cheak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="info_cheak">
+              <PropertyRef Name="id_cheka" />
+            </Principal>
+            <Dependent Role="cheak">
+              <PropertyRef Name="cheakkk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cheak__pol_id__5441852A">
+          <End Role="polzovatel" Type="Self.polzovatel" Multiplicity="0..1" />
+          <End Role="cheak" Type="Self.cheak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="polzovatel">
+              <PropertyRef Name="id_pol" />
+            </Principal>
+            <Dependent Role="cheak">
+              <PropertyRef Name="pol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__drag_camn__camen__44FF419A">
+          <End Role="cena_ukrash" Type="Self.cena_ukrash" Multiplicity="0..1" />
+          <End Role="drag_camni" Type="Self.drag_camni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cena_ukrash">
+              <PropertyRef Name="id_cena_ukrash" />
+            </Principal>
+            <Dependent Role="drag_camni">
+              <PropertyRef Name="camen_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__drag_camn__mesto__4316F928">
+          <End Role="mesto_dobich" Type="Self.mesto_dobich" Multiplicity="0..1" />
+          <End Role="drag_camni" Type="Self.drag_camni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mesto_dobich">
+              <PropertyRef Name="id_dobich" />
+            </Principal>
+            <Dependent Role="drag_camni">
+              <PropertyRef Name="mesto_dobich_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__drag_camn__ochis__440B1D61">
+          <End Role="ochish_camen" Type="Self.ochish_camen" Multiplicity="0..1" />
+          <End Role="drag_camni" Type="Self.drag_camni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ochish_camen">
+              <PropertyRef Name="id_ochish" />
+            </Principal>
+            <Dependent Role="drag_camni">
+              <PropertyRef Name="ochis_kamen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__info_chea__price__5070F446">
+          <End Role="cena_ukrash" Type="Self.cena_ukrash" Multiplicity="0..1" />
+          <End Role="info_cheak" Type="Self.info_cheak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cena_ukrash">
+              <PropertyRef Name="id_cena_ukrash" />
+            </Principal>
+            <Dependent Role="info_cheak">
+              <PropertyRef Name="price" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mesto_dob__count__3B75D760">
+          <End Role="strana" Type="Self.strana" Multiplicity="0..1" />
+          <End Role="mesto_dobich" Type="Self.mesto_dobich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="strana">
+              <PropertyRef Name="id_country_name" />
+            </Principal>
+            <Dependent Role="mesto_dobich">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mesto_dob__post___3C69FB99">
+          <End Role="postavchik" Type="Self.postavchik" Multiplicity="0..1" />
+          <End Role="mesto_dobich" Type="Self.mesto_dobich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postavchik">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="mesto_dobich">
+              <PropertyRef Name="post_dost_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__polzovate__role___4D94879B">
+          <End Role="rolee" Type="Self.rolee" Multiplicity="0..1" />
+          <End Role="polzovatel" Type="Self.polzovatel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rolee">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="polzovatel">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__rolee__posttt_id__4AB81AF0">
+          <End Role="postavchik" Type="Self.postavchik" Multiplicity="0..1" />
+          <End Role="rolee" Type="Self.rolee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postavchik">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="rolee">
+              <PropertyRef Name="posttt_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__rolee__uvel_id__49C3F6B7">
+          <End Role="uveliri" Type="Self.uveliri" Multiplicity="0..1" />
+          <End Role="rolee" Type="Self.rolee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="uveliri">
+              <PropertyRef Name="id_uveliri" />
+            </Principal>
+            <Dependent Role="rolee">
+              <PropertyRef Name="uvel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище uvModelContainer">
+          <EntitySet Name="cena_ukrash" EntityType="Self.cena_ukrash" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cheak" EntityType="Self.cheak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="drag_camni" EntityType="Self.drag_camni" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="info_cheak" EntityType="Self.info_cheak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mesto_dobich" EntityType="Self.mesto_dobich" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ochish_camen" EntityType="Self.ochish_camen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="polzovatel" EntityType="Self.polzovatel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="postavchik" EntityType="Self.postavchik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rolee" EntityType="Self.rolee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="strana" EntityType="Self.strana" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uveliri" EntityType="Self.uveliri" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__cheak__cheakkk_i__534D60F1" Association="Self.FK__cheak__cheakkk_i__534D60F1">
+            <End Role="info_cheak" EntitySet="info_cheak" />
+            <End Role="cheak" EntitySet="cheak" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cheak__pol_id__5441852A" Association="Self.FK__cheak__pol_id__5441852A">
+            <End Role="polzovatel" EntitySet="polzovatel" />
+            <End Role="cheak" EntitySet="cheak" />
+          </AssociationSet>
+          <AssociationSet Name="FK__drag_camn__camen__44FF419A" Association="Self.FK__drag_camn__camen__44FF419A">
+            <End Role="cena_ukrash" EntitySet="cena_ukrash" />
+            <End Role="drag_camni" EntitySet="drag_camni" />
+          </AssociationSet>
+          <AssociationSet Name="FK__drag_camn__mesto__4316F928" Association="Self.FK__drag_camn__mesto__4316F928">
+            <End Role="mesto_dobich" EntitySet="mesto_dobich" />
+            <End Role="drag_camni" EntitySet="drag_camni" />
+          </AssociationSet>
+          <AssociationSet Name="FK__drag_camn__ochis__440B1D61" Association="Self.FK__drag_camn__ochis__440B1D61">
+            <End Role="ochish_camen" EntitySet="ochish_camen" />
+            <End Role="drag_camni" EntitySet="drag_camni" />
+          </AssociationSet>
+          <AssociationSet Name="FK__info_chea__price__5070F446" Association="Self.FK__info_chea__price__5070F446">
+            <End Role="cena_ukrash" EntitySet="cena_ukrash" />
+            <End Role="info_cheak" EntitySet="info_cheak" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mesto_dob__count__3B75D760" Association="Self.FK__mesto_dob__count__3B75D760">
+            <End Role="strana" EntitySet="strana" />
+            <End Role="mesto_dobich" EntitySet="mesto_dobich" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mesto_dob__post___3C69FB99" Association="Self.FK__mesto_dob__post___3C69FB99">
+            <End Role="postavchik" EntitySet="postavchik" />
+            <End Role="mesto_dobich" EntitySet="mesto_dobich" />
+          </AssociationSet>
+          <AssociationSet Name="FK__polzovate__role___4D94879B" Association="Self.FK__polzovate__role___4D94879B">
+            <End Role="rolee" EntitySet="rolee" />
+            <End Role="polzovatel" EntitySet="polzovatel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__rolee__posttt_id__4AB81AF0" Association="Self.FK__rolee__posttt_id__4AB81AF0">
+            <End Role="postavchik" EntitySet="postavchik" />
+            <End Role="rolee" EntitySet="rolee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__rolee__uvel_id__49C3F6B7" Association="Self.FK__rolee__uvel_id__49C3F6B7">
+            <End Role="uveliri" EntitySet="uveliri" />
+            <End Role="rolee" EntitySet="rolee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="uvModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cena_ukrash">
+          <Key>
+            <PropertyRef Name="id_cena_ukrash" />
+          </Key>
+          <Property Name="id_cena_ukrash" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="priceee" Type="Int32" />
+          <NavigationProperty Name="drag_camni" Relationship="Self.FK__drag_camn__camen__44FF419A" FromRole="cena_ukrash" ToRole="drag_camni" />
+          <NavigationProperty Name="info_cheak" Relationship="Self.FK__info_chea__price__5070F446" FromRole="cena_ukrash" ToRole="info_cheak" />
+        </EntityType>
+        <EntityType Name="drag_camni">
+          <Key>
+            <PropertyRef Name="id_camni" />
+          </Key>
+          <Property Name="id_camni" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_camni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mesto_dobich_id" Type="Int32" />
+          <Property Name="ochis_kamen" Type="Int32" />
+          <Property Name="camen_id" Type="Int32" />
+          <NavigationProperty Name="cena_ukrash" Relationship="Self.FK__drag_camn__camen__44FF419A" FromRole="drag_camni" ToRole="cena_ukrash" />
+          <NavigationProperty Name="mesto_dobich" Relationship="Self.FK__drag_camn__mesto__4316F928" FromRole="drag_camni" ToRole="mesto_dobich" />
+          <NavigationProperty Name="ochish_camen" Relationship="Self.FK__drag_camn__ochis__440B1D61" FromRole="drag_camni" ToRole="ochish_camen" />
+        </EntityType>
+        <EntityType Name="info_cheak">
+          <Key>
+            <PropertyRef Name="id_cheka" />
+          </Key>
+          <Property Name="id_cheka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="addess" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="vrem" Type="Time" Precision="7" />
+          <NavigationProperty Name="cena_ukrash" Relationship="Self.FK__info_chea__price__5070F446" FromRole="info_cheak" ToRole="cena_ukrash" />
+          <NavigationProperty Name="cheak" Relationship="uvModel.FK__cheak__cheakkk_i__534D60F1" FromRole="info_cheak" ToRole="cheak" />
+        </EntityType>
+        <EntityType Name="mesto_dobich">
+          <Key>
+            <PropertyRef Name="id_dobich" />
+          </Key>
+          <Property Name="id_dobich" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mesto_dobich1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country_id" Type="Int32" />
+          <Property Name="post_dost_id" Type="Int32" />
+          <NavigationProperty Name="drag_camni" Relationship="Self.FK__drag_camn__mesto__4316F928" FromRole="mesto_dobich" ToRole="drag_camni" />
+          <NavigationProperty Name="strana" Relationship="Self.FK__mesto_dob__count__3B75D760" FromRole="mesto_dobich" ToRole="strana" />
+          <NavigationProperty Name="postavchik" Relationship="Self.FK__mesto_dob__post___3C69FB99" FromRole="mesto_dobich" ToRole="postavchik" />
+        </EntityType>
+        <EntityType Name="ochish_camen">
+          <Key>
+            <PropertyRef Name="id_ochish" />
+          </Key>
+          <Property Name="id_ochish" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ochish" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="drag_camni" Relationship="Self.FK__drag_camn__ochis__440B1D61" FromRole="ochish_camen" ToRole="drag_camni" />
+        </EntityType>
+        <EntityType Name="polzovatel">
+          <Key>
+            <PropertyRef Name="id_pol" />
+          </Key>
+          <Property Name="id_pol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Loginn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passwordd" Type="Int32" />
+          <Property Name="role_id" Type="Int32" />
+          <NavigationProperty Name="rolee" Relationship="Self.FK__polzovate__role___4D94879B" FromRole="polzovatel" ToRole="rolee" />
+          <NavigationProperty Name="cheak" Relationship="uvModel.FK__cheak__pol_id__5441852A" FromRole="polzovatel" ToRole="cheak" />
+        </EntityType>
+        <EntityType Name="postavchik">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="Int32" Nullable="false" />
+          <Property Name="name_post" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="surname_post" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="otchestvo_post" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mesto_dobich" Relationship="Self.FK__mesto_dob__post___3C69FB99" FromRole="postavchik" ToRole="mesto_dobich" />
+          <NavigationProperty Name="rolee" Relationship="Self.FK__rolee__posttt_id__4AB81AF0" FromRole="postavchik" ToRole="rolee" />
+        </EntityType>
+        <EntityType Name="rolee">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_of_reole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="uvel_id" Type="Int32" />
+          <Property Name="posttt_id" Type="Int32" />
+          <NavigationProperty Name="polzovatel" Relationship="Self.FK__polzovate__role___4D94879B" FromRole="rolee" ToRole="polzovatel" />
+          <NavigationProperty Name="postavchik" Relationship="Self.FK__rolee__posttt_id__4AB81AF0" FromRole="rolee" ToRole="postavchik" />
+          <NavigationProperty Name="uveliri" Relationship="Self.FK__rolee__uvel_id__49C3F6B7" FromRole="rolee" ToRole="uveliri" />
+        </EntityType>
+        <EntityType Name="strana">
+          <Key>
+            <PropertyRef Name="id_country_name" />
+          </Key>
+          <Property Name="id_country_name" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strana1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mesto_dobich" Relationship="Self.FK__mesto_dob__count__3B75D760" FromRole="strana" ToRole="mesto_dobich" />
+        </EntityType>
+        <EntityType Name="uveliri">
+          <Key>
+            <PropertyRef Name="id_uveliri" />
+          </Key>
+          <Property Name="id_uveliri" Type="Int32" Nullable="false" />
+          <Property Name="name_uveliri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="surname_uvelriri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="otchestvo_uvelri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="rolee" Relationship="Self.FK__rolee__uvel_id__49C3F6B7" FromRole="uveliri" ToRole="rolee" />
+        </EntityType>
+        <Association Name="FK__drag_camn__camen__44FF419A">
+          <End Role="cena_ukrash" Type="Self.cena_ukrash" Multiplicity="0..1" />
+          <End Role="drag_camni" Type="Self.drag_camni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cena_ukrash">
+              <PropertyRef Name="id_cena_ukrash" />
+            </Principal>
+            <Dependent Role="drag_camni">
+              <PropertyRef Name="camen_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__info_chea__price__5070F446">
+          <End Role="cena_ukrash" Type="Self.cena_ukrash" Multiplicity="0..1" />
+          <End Role="info_cheak" Type="Self.info_cheak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cena_ukrash">
+              <PropertyRef Name="id_cena_ukrash" />
+            </Principal>
+            <Dependent Role="info_cheak">
+              <PropertyRef Name="price" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__drag_camn__mesto__4316F928">
+          <End Role="mesto_dobich" Type="Self.mesto_dobich" Multiplicity="0..1" />
+          <End Role="drag_camni" Type="Self.drag_camni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mesto_dobich">
+              <PropertyRef Name="id_dobich" />
+            </Principal>
+            <Dependent Role="drag_camni">
+              <PropertyRef Name="mesto_dobich_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__drag_camn__ochis__440B1D61">
+          <End Role="ochish_camen" Type="Self.ochish_camen" Multiplicity="0..1" />
+          <End Role="drag_camni" Type="Self.drag_camni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ochish_camen">
+              <PropertyRef Name="id_ochish" />
+            </Principal>
+            <Dependent Role="drag_camni">
+              <PropertyRef Name="ochis_kamen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mesto_dob__count__3B75D760">
+          <End Role="strana" Type="Self.strana" Multiplicity="0..1" />
+          <End Role="mesto_dobich" Type="Self.mesto_dobich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="strana">
+              <PropertyRef Name="id_country_name" />
+            </Principal>
+            <Dependent Role="mesto_dobich">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mesto_dob__post___3C69FB99">
+          <End Role="postavchik" Type="Self.postavchik" Multiplicity="0..1" />
+          <End Role="mesto_dobich" Type="Self.mesto_dobich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postavchik">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="mesto_dobich">
+              <PropertyRef Name="post_dost_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__polzovate__role___4D94879B">
+          <End Role="rolee" Type="Self.rolee" Multiplicity="0..1" />
+          <End Role="polzovatel" Type="Self.polzovatel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rolee">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="polzovatel">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__rolee__posttt_id__4AB81AF0">
+          <End Role="postavchik" Type="Self.postavchik" Multiplicity="0..1" />
+          <End Role="rolee" Type="Self.rolee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postavchik">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="rolee">
+              <PropertyRef Name="posttt_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__rolee__uvel_id__49C3F6B7">
+          <End Role="uveliri" Type="Self.uveliri" Multiplicity="0..1" />
+          <End Role="rolee" Type="Self.rolee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="uveliri">
+              <PropertyRef Name="id_uveliri" />
+            </Principal>
+            <Dependent Role="rolee">
+              <PropertyRef Name="uvel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="uvEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cena_ukrash" EntityType="Self.cena_ukrash" />
+          <EntitySet Name="drag_camni" EntityType="Self.drag_camni" />
+          <EntitySet Name="info_cheak" EntityType="Self.info_cheak" />
+          <EntitySet Name="mesto_dobich" EntityType="Self.mesto_dobich" />
+          <EntitySet Name="ochish_camen" EntityType="Self.ochish_camen" />
+          <EntitySet Name="polzovatel" EntityType="Self.polzovatel" />
+          <EntitySet Name="postavchik" EntityType="Self.postavchik" />
+          <EntitySet Name="rolee" EntityType="Self.rolee" />
+          <EntitySet Name="strana" EntityType="Self.strana" />
+          <EntitySet Name="uveliri" EntityType="Self.uveliri" />
+          <AssociationSet Name="FK__drag_camn__camen__44FF419A" Association="Self.FK__drag_camn__camen__44FF419A">
+            <End Role="cena_ukrash" EntitySet="cena_ukrash" />
+            <End Role="drag_camni" EntitySet="drag_camni" />
+          </AssociationSet>
+          <AssociationSet Name="FK__info_chea__price__5070F446" Association="Self.FK__info_chea__price__5070F446">
+            <End Role="cena_ukrash" EntitySet="cena_ukrash" />
+            <End Role="info_cheak" EntitySet="info_cheak" />
+          </AssociationSet>
+          <AssociationSet Name="FK__drag_camn__mesto__4316F928" Association="Self.FK__drag_camn__mesto__4316F928">
+            <End Role="mesto_dobich" EntitySet="mesto_dobich" />
+            <End Role="drag_camni" EntitySet="drag_camni" />
+          </AssociationSet>
+          <AssociationSet Name="FK__drag_camn__ochis__440B1D61" Association="Self.FK__drag_camn__ochis__440B1D61">
+            <End Role="ochish_camen" EntitySet="ochish_camen" />
+            <End Role="drag_camni" EntitySet="drag_camni" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mesto_dob__count__3B75D760" Association="Self.FK__mesto_dob__count__3B75D760">
+            <End Role="strana" EntitySet="strana" />
+            <End Role="mesto_dobich" EntitySet="mesto_dobich" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mesto_dob__post___3C69FB99" Association="Self.FK__mesto_dob__post___3C69FB99">
+            <End Role="postavchik" EntitySet="postavchik" />
+            <End Role="mesto_dobich" EntitySet="mesto_dobich" />
+          </AssociationSet>
+          <AssociationSet Name="FK__polzovate__role___4D94879B" Association="Self.FK__polzovate__role___4D94879B">
+            <End Role="rolee" EntitySet="rolee" />
+            <End Role="polzovatel" EntitySet="polzovatel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__rolee__posttt_id__4AB81AF0" Association="Self.FK__rolee__posttt_id__4AB81AF0">
+            <End Role="postavchik" EntitySet="postavchik" />
+            <End Role="rolee" EntitySet="rolee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__rolee__uvel_id__49C3F6B7" Association="Self.FK__rolee__uvel_id__49C3F6B7">
+            <End Role="uveliri" EntitySet="uveliri" />
+            <End Role="rolee" EntitySet="rolee" />
+          </AssociationSet>
+          <EntitySet Name="cheak" EntityType="uvModel.cheak" />
+          <AssociationSet Name="FK__cheak__cheakkk_i__534D60F1" Association="uvModel.FK__cheak__cheakkk_i__534D60F1">
+            <End Role="info_cheak" EntitySet="info_cheak" />
+            <End Role="cheak" EntitySet="cheak" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cheak__pol_id__5441852A" Association="uvModel.FK__cheak__pol_id__5441852A">
+            <End Role="polzovatel" EntitySet="polzovatel" />
+            <End Role="cheak" EntitySet="cheak" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cheak">
+          <Key>
+            <PropertyRef Name="id_cheak" />
+          </Key>
+          <Property Name="id_cheak" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tovar_id" Type="Int32" />
+          <Property Name="cheakkk_id" Type="Int32" />
+          <Property Name="pol_id" Type="Int32" />
+          <NavigationProperty Name="info_cheak" Relationship="uvModel.FK__cheak__cheakkk_i__534D60F1" FromRole="cheak" ToRole="info_cheak" />
+          <NavigationProperty Name="polzovatel" Relationship="uvModel.FK__cheak__pol_id__5441852A" FromRole="cheak" ToRole="polzovatel" />
+        </EntityType>
+        <Association Name="FK__cheak__cheakkk_i__534D60F1">
+          <End Type="uvModel.info_cheak" Role="info_cheak" Multiplicity="0..1" />
+          <End Type="uvModel.cheak" Role="cheak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="info_cheak">
+              <PropertyRef Name="id_cheka" />
+            </Principal>
+            <Dependent Role="cheak">
+              <PropertyRef Name="cheakkk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cheak__pol_id__5441852A">
+          <End Type="uvModel.polzovatel" Role="polzovatel" Multiplicity="0..1" />
+          <End Type="uvModel.cheak" Role="cheak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="polzovatel">
+              <PropertyRef Name="id_pol" />
+            </Principal>
+            <Dependent Role="cheak">
+              <PropertyRef Name="pol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище uvModelContainer" CdmEntityContainer="uvEntities">
+          <EntitySetMapping Name="cena_ukrash">
+            <EntityTypeMapping TypeName="uvModel.cena_ukrash">
+              <MappingFragment StoreEntitySet="cena_ukrash">
+                <ScalarProperty Name="id_cena_ukrash" ColumnName="id_cena_ukrash" />
+                <ScalarProperty Name="priceee" ColumnName="priceee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="drag_camni">
+            <EntityTypeMapping TypeName="uvModel.drag_camni">
+              <MappingFragment StoreEntitySet="drag_camni">
+                <ScalarProperty Name="id_camni" ColumnName="id_camni" />
+                <ScalarProperty Name="name_camni" ColumnName="name_camni" />
+                <ScalarProperty Name="mesto_dobich_id" ColumnName="mesto_dobich_id" />
+                <ScalarProperty Name="ochis_kamen" ColumnName="ochis_kamen" />
+                <ScalarProperty Name="camen_id" ColumnName="camen_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="info_cheak">
+            <EntityTypeMapping TypeName="uvModel.info_cheak">
+              <MappingFragment StoreEntitySet="info_cheak">
+                <ScalarProperty Name="id_cheka" ColumnName="id_cheka" />
+                <ScalarProperty Name="addess" ColumnName="addess" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="vrem" ColumnName="vrem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mesto_dobich">
+            <EntityTypeMapping TypeName="uvModel.mesto_dobich">
+              <MappingFragment StoreEntitySet="mesto_dobich">
+                <ScalarProperty Name="id_dobich" ColumnName="id_dobich" />
+                <ScalarProperty Name="mesto_dobich1" ColumnName="mesto_dobich" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="post_dost_id" ColumnName="post_dost_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ochish_camen">
+            <EntityTypeMapping TypeName="uvModel.ochish_camen">
+              <MappingFragment StoreEntitySet="ochish_camen">
+                <ScalarProperty Name="id_ochish" ColumnName="id_ochish" />
+                <ScalarProperty Name="ochish" ColumnName="ochish" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="polzovatel">
+            <EntityTypeMapping TypeName="uvModel.polzovatel">
+              <MappingFragment StoreEntitySet="polzovatel">
+                <ScalarProperty Name="id_pol" ColumnName="id_pol" />
+                <ScalarProperty Name="Loginn" ColumnName="Loginn" />
+                <ScalarProperty Name="passwordd" ColumnName="passwordd" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="postavchik">
+            <EntityTypeMapping TypeName="uvModel.postavchik">
+              <MappingFragment StoreEntitySet="postavchik">
+                <ScalarProperty Name="id_post" ColumnName="id_post" />
+                <ScalarProperty Name="name_post" ColumnName="name_post" />
+                <ScalarProperty Name="surname_post" ColumnName="surname_post" />
+                <ScalarProperty Name="otchestvo_post" ColumnName="otchestvo_post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rolee">
+            <EntityTypeMapping TypeName="uvModel.rolee">
+              <MappingFragment StoreEntitySet="rolee">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="name_of_reole" ColumnName="name_of_reole" />
+                <ScalarProperty Name="uvel_id" ColumnName="uvel_id" />
+                <ScalarProperty Name="posttt_id" ColumnName="posttt_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="strana">
+            <EntityTypeMapping TypeName="uvModel.strana">
+              <MappingFragment StoreEntitySet="strana">
+                <ScalarProperty Name="id_country_name" ColumnName="id_country_name" />
+                <ScalarProperty Name="strana1" ColumnName="strana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uveliri">
+            <EntityTypeMapping TypeName="uvModel.uveliri">
+              <MappingFragment StoreEntitySet="uveliri">
+                <ScalarProperty Name="id_uveliri" ColumnName="id_uveliri" />
+                <ScalarProperty Name="name_uveliri" ColumnName="name_uveliri" />
+                <ScalarProperty Name="surname_uvelriri" ColumnName="surname_uvelriri" />
+                <ScalarProperty Name="otchestvo_uvelri" ColumnName="otchestvo_uvelri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cheak">
+            <EntityTypeMapping TypeName="uvModel.cheak">
+              <MappingFragment StoreEntitySet="cheak">
+                <ScalarProperty Name="pol_id" ColumnName="pol_id" />
+                <ScalarProperty Name="cheakkk_id" ColumnName="cheakkk_id" />
+                <ScalarProperty Name="tovar_id" ColumnName="tovar_id" />
+                <ScalarProperty Name="id_cheak" ColumnName="id_cheak" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

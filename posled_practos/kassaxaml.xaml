@@ -1,0 +1,34 @@
+﻿<Window x:Class="posled_practos.kassaxaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posled_practos"
+        mc:Ignorable="d"
+        Title="kassaxaml" Height="450" Width="800">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="sklad" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" SelectionChanged="sklad_SelectionChanged"/>
+        <DataGrid x:Name="cheakk" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" SelectionChanged="cheakk_SelectionChanged"/>
+
+
+
+        <Button Grid.Column="0" Grid.Row="0" Content="Чек" Click="Button_Click" />
+        <Button Grid.Row="1" Content ="Предыдущая" Click="Button_Click_1"/>
+
+    </Grid>
+</Window>

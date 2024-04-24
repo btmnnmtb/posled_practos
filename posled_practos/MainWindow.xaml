@@ -1,0 +1,19 @@
+﻿<Window x:Class="posled_practos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posled_practos"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="Login" Grid.Row="0" VerticalAlignment="Center"/>
+        <PasswordBox x:Name="Pass" Grid.Row="1" VerticalAlignment="Center"/>
+        <Button Grid.Row="2" Content="Авторизоваься" Click="Butt"/>
+    </Grid>
+</Window>
